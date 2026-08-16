@@ -1,3 +1,5 @@
+[简体中文](README.zh.md)
+
 # command-scout
 
 Discover the build commands a project already declares — Makefile targets,
@@ -44,6 +46,12 @@ stderr and the exit code.
   `dsh plugin` management.
 
 ## Installation
+
+### Installing in DSH
+
+```sh
+dsh plugin --profile demo add github:JohnXu22786/command-scout
+```
 
 ### As a dsh bundle (recommended)
 
@@ -286,4 +294,4 @@ test/                      node:test suite + fixtures
 
 ## License
 
-MIT
+[MIT](LICENSE)
