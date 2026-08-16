@@ -1,0 +1,10 @@
+{
+  // Task definitions for the demo project
+  "name": "mixed-demo",
+  "tasks": {
+    "serve": "deno run --allow-net server.ts",
+    "lint": "deno lint",
+    /* a task with a comment inside */
+    "check": "deno check main.ts",
+  },
+}

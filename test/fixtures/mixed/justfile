@@ -1,0 +1,11 @@
+# justfile demo
+default: build
+
+build: Compile everything
+    cc main.c
+
+lint ARGS*: Lint with optional args
+    echo {{ARGS}}
+
+x := ignored assignment
+alias b := build

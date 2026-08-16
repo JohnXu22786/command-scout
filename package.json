@@ -1,0 +1,42 @@
+{
+  "name": "dsh-command-scout",
+  "version": "0.1.0",
+  "description": "Scans the project workspace at startup and exposes its declared build commands (Makefile targets, package.json scripts, just recipes, deno tasks) as callable agent tools.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "makefile",
+    "npm-scripts",
+    "justfile",
+    "deno",
+    "build"
+  ],
+  "engines": {
+    "node": ">=18.17"
+  },
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./adapter": "./src/dsh-adapter.js"
+  },
+  "bin": {
+    "command-scout": "./bin/command-scout.mjs"
+  },
+  "files": [
+    "src",
+    "bin",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/schemastery": ">=4"
+  }
+}

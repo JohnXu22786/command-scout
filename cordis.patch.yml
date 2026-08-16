@@ -1,0 +1,7 @@
+# Configuration layer contributed by the command-scout bundle.
+# Inserted when a profile lists this bundle in its `dsh.profile.bundles`.
+# The row mounts the adapter entry (a package subpath, resolved through the
+# package's exports map); the package main stays free of harness imports.
+- insert:
+    - id: command-scout
+      name: dsh-command-scout/adapter

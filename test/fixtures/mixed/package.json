@@ -1,0 +1,12 @@
+{
+  "name": "mixed-demo",
+  "version": "1.0.0",
+  "packageManager": "pnpm@9.1.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:css": "postcss src/style.css -o dist/style.css",
+    "test": "vitest run",
+    "broken": 42
+  }
+}
