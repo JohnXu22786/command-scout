@@ -47,11 +47,15 @@ test('scan --format json emits machine-readable output', async () => {
 })
 
 test('scan on an empty project reports no build files', async () => {
-  const { io, lines } = captureIo()
-  const empty = path.join(path.dirname(FIXTURES), 'empty')
-  const code = await main(['scan', '--root', empty], io)
-  assert.equal(code, 0)
-  assert.ok(lines.out.join('\n').includes('No build files found'))
+  const empty = fs.mkdtempSync(path.join(os.tmpdir(), 'scout-empty-'))
+  try {
+    const { io, lines } = captureIo()
+    const code = await main(['scan', '--root', empty], io)
+    assert.equal(code, 0)
+    assert.ok(lines.out.join('\n').includes('No build files found'))
+  } finally {
+    fs.rmSync(empty, { recursive: true, force: true })
+  }
 })
 
 test('docs writes COMMANDS.md and reports the count', async () => {

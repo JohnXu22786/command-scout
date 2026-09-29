@@ -19,7 +19,7 @@ test('mixed fixture: all collectors contribute to one book', () => {
   assert.ok(ids.includes('deno:serve'))
   assert.deepEqual(
     detectedFiles.sort(),
-    ['deno.jsonc', 'justfile', 'makefile', 'package.json'],
+    ['Makefile', 'deno.jsonc', 'justfile', 'package.json'],
   )
   // the fixture's intentionally broken "broken" script yields one diagnostic
   assert.equal(diagnostics.length, 1)
@@ -27,10 +27,15 @@ test('mixed fixture: all collectors contribute to one book', () => {
 })
 
 test('empty project: no recipes, no errors', () => {
-  const { book, detectedFiles, diagnostics } = discover(path.join(FIXTURES, 'empty'))
-  assert.equal(book.size, 0)
-  assert.deepEqual(detectedFiles, [])
-  assert.deepEqual(diagnostics, [])
+  const empty = fs.mkdtempSync(path.join(os.tmpdir(), 'scout-empty-'))
+  try {
+    const { book, detectedFiles, diagnostics } = discover(empty)
+    assert.equal(book.size, 0)
+    assert.deepEqual(detectedFiles, [])
+    assert.deepEqual(diagnostics, [])
+  } finally {
+    fs.rmSync(empty, { recursive: true, force: true })
+  }
 })
 
 test('disabled collectors are skipped entirely', () => {
